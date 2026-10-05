@@ -1,22 +1,15 @@
-# 🎤 Week08 Bootcamp2019a Project: Wu-Tang Name Generator
+# Wu-Tang Name Generator
 
-### Goal: Create a Wu-Tang Clan name generator. Present the user with 5 survey questions and based on those answers randomly generate their name. The name doesn't have to be exact names, but Wu-Tang sounding-ish names. Ex: Childish Gambino (who actually got his name from a Wu-Tang name generator).
+Answer five deeply scientific questions, yes, maybe, or no, and receive your official Wu-Tang name. "Ruthless Hustle" could be you. Runs on a handmade Node server, no Express.
 
-### How to submit your code for review:
+![Wu-Tang Generator screenshot](screenshot.jpg)
 
-- Fork and clone this repo
-- Create a new branch called answer
-- Checkout answer branch
-- Push to your fork
-- Issue a pull request
-- Your pull request description should contain the following:
-  - (1 to 5 no 3) I completed the challenge
-  - (1 to 5 no 3) I feel good about my code
-  - Anything specific on which you want feedback!
+## How the code works
 
-Example:
-```
-I completed the challenge: 5
-I feel good about my code: 4
-I'm not sure if my constructors are setup cleanly...
-```
+The frontend is `wuTangGen()`, wired to the Generate button. It loops over the five questions and grabs each checked radio with `input[name="qN"]:checked`, mapping the picks to values. If any question is unanswered it bails early with "Please answer all questions.", a guard clause that keeps bad state from ever reaching the server. Otherwise it builds a query string like `q1=a&q2=c...` and fetches `/api` with it.
+
+The server is where the fun is. It keeps three word banks, one per answer letter, each with first-half and last-half names. `mostPicked()` tallies the five answers and returns the majority letter, so your answers actually vote on the outcome instead of the whole thing being a dice roll. Then `listTaker()` picks a random first and last name from the winning bank. Majority vote plus randomness: the result feels earned because your answers steered it, but it's different every time because the pick is random within the bank.
+
+I like this design because the naive version, pure random name generation, would make the quiz pointless. The vote is one small function, but it's the difference between a quiz and a slot machine.
+
+Run it with `node server.js`. My code is on the `answer` branch.
