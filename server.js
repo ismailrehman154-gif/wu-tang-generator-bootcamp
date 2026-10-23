@@ -123,6 +123,6 @@ const server = http.createServer((req, res) => {
     }
 });
 
-server.listen(8020, () => {
+server.listen(process.env.PORT || 8020, () => {
     console.log('Server is running on port 8020');
 });
