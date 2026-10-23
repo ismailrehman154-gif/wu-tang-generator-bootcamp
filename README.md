@@ -2,6 +2,8 @@
 
 Answer five deeply scientific questions, yes, maybe, or no, and receive your official Wu-Tang name. "Ruthless Hustle" could be you. Runs on a handmade Node server, no Express.
 
+**Live site:** https://wu-tang-ismail.onrender.com
+
 ![Wu-Tang Generator screenshot](screenshot.jpg)
 
 ## How the code works
